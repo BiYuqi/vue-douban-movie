@@ -3,6 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import '../static/js/rem.js'
+import MySelfComponents from '@/components/index'
+
+Vue.use(MySelfComponents)
 
 Vue.config.productionTip = false
 
