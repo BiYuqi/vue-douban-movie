@@ -9,15 +9,25 @@
         radius="4">
       </search-bar>
     </div>
+    <div class="header-sub">
+      <tab-slider></tab-slider>
+    </div>
   </div>
 </template>
 
 <script>
+import TabSlider from './components/slider.vue'
 export default {
+  components: {
+    TabSlider
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+.hot-filming-wrap{
+  height: 100%;
+}
 .header-top{
   display: flex;
   justify-content: space-between;
@@ -26,6 +36,9 @@ export default {
 }
 .city-select-media{
   width: 15%;
+}
+.header-sub{
+  height: 100%;
 }
 .search-bar-media{
   width: 85%;

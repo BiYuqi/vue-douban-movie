@@ -15,4 +15,7 @@ export default {
 </script>
 
 <style lang="scss">
+.byq-dashboard{
+  height: 100%;
+}
 </style>

@@ -1,30 +1,15 @@
-# vue-douban-movie
+# 本地起服务
 
-> A mobile project
-
-## Build Setup
-
-``` bash
-# install dependencies
+### 下载项目
+```js
+git clone https://github.com/BiYuqi/vue-douban-movie.git
+cd vue-douban-movie
 npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
+npm run dev // 起vue项目即可
 ```
+#### 接着运行 node,启动服务， 注意：这一步的 node 转发服务一定要启动，要不然无法正常访问豆瓣 API
+cd node-proxy
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+node index.js // 本期起服务 代理请求豆瓣api
+# 发布
+暂未申请豆瓣api
