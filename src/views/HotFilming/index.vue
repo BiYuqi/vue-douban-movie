@@ -69,7 +69,9 @@ export default {
 @media (min-width:800px) {
   .header-sub{
     width: 800px;
-    margin: 0 auto;
+    top: .6rem;
+    left: 50%;
+    margin-left: -400px;
   }
 }
 </style>

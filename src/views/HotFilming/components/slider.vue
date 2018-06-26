@@ -16,7 +16,7 @@
           :style="{
             width: clientWidth * tabHeader.length + 'px',
             overflowX: 'auto',
-            height: mainHeight + 'px',
+            height: '100%',
             transform: `translate(-${clientWidth * tabIndex}px, 0)`}"
             ref="touchTarget">
           <li :style="{
@@ -244,5 +244,24 @@ export default {
       transition: all .2s;
     }
   }
+  .slider-content{
+    .movie-tag{
+      .left-content{
+        padding-right: .3rem;
+        img{
+          width: 100px;
+        }
+      }
+      .mid-content{
+        width: 350px;
+        padding-right: .3rem;
+      }
+      .right-content{
+        width: 200px;
+        text-align: center;
+      }
+    }
+  }
+
 }
 </style>
