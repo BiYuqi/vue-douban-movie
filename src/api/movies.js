@@ -5,3 +5,9 @@ export const fetchHotFilm = () => {
     methods: 'GET'
   })
 }
+export const fetchWillFilm = () => {
+  return request({
+    url: '/movie/coming_soon',
+    methods: 'GET'
+  })
+}

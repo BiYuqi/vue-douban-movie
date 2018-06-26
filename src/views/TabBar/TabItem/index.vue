@@ -81,4 +81,12 @@ export default {
     }
   }
 }
+@media screen and (min-width: 800px) {
+  .tab-wrap{
+    height: .2rem;
+  }
+  div{
+    font-size: 12px;
+  }
+}
 </style>

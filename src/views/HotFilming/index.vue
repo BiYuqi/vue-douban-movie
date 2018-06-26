@@ -1,16 +1,18 @@
 <template lang="html">
   <div class="hot-filming-wrap">
-    <div class="header-top">
-      <city-select
-        class="city-select-media">
-      </city-select>
-      <search-bar
-        class="search-bar-media"
-        radius="4">
-      </search-bar>
-    </div>
-    <div class="header-sub">
-      <tab-slider></tab-slider>
+    <div class="header-wrap">
+      <div class="header-top">
+        <city-select
+          class="city-select-media">
+        </city-select>
+        <search-bar
+          class="search-bar-media"
+          radius="4">
+        </search-bar>
+      </div>
+      <div class="header-sub">
+        <tab-slider></tab-slider>
+      </div>
     </div>
   </div>
 </template>
@@ -18,6 +20,8 @@
 <script>
 import TabSlider from './components/slider.vue'
 export default {
+  mounted () {
+  },
   components: {
     TabSlider
   }
@@ -28,17 +32,28 @@ export default {
 .hot-filming-wrap{
   height: 100%;
 }
+.header-wrap{
+  height: 100%;
+}
 .header-top{
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: .2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 .city-select-media{
   width: 15%;
 }
 .header-sub{
   height: 100%;
+  position: fixed;
+  top: 1rem;
+  left: 0;
+  width: 100%;
 }
 .search-bar-media{
   width: 85%;
@@ -49,6 +64,12 @@ export default {
   }
   .search-bar-media{
     width: 80%;
+  }
+}
+@media (min-width:800px) {
+  .header-sub{
+    width: 800px;
+    margin: 0 auto;
   }
 }
 </style>

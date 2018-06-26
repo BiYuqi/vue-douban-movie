@@ -12,4 +12,4 @@ cd node-proxy
 
 node index.js // 本期起服务 代理请求豆瓣api
 # 发布
-暂未申请豆瓣api
+线上接口我已经发布在了[heroku](https://www.heroku.com/)(需要翻墙), github地址[douban-api2](https://github.com/BiYuqi/douban-api2)

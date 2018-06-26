@@ -45,4 +45,10 @@ export default {
     font-style: normal;
   }
 }
+@media screen and (min-width: 800px) {
+  .search-mock{
+    height: .2rem;
+    line-height: .2rem;
+  }
+}
 </style>

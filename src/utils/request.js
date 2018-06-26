@@ -1,5 +1,5 @@
 import axios from 'axios'
-const HOST = process.env.NODE_ENV === 'development' ? 'http://localhost:8081' : 'https://api.douban.com/v2/'
+const HOST = process.env.NODE_ENV === 'development' ? 'http://localhost:8081' : 'https://heroku-douban-api.herokuapp.com/'
 const server = axios.create({
   baseURL: HOST,
   timeout: 5000
