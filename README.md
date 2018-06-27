@@ -11,5 +11,9 @@ npm run dev // 起vue项目即可
 cd node-proxy
 
 node index.js // 本期起服务 代理请求豆瓣api
+# 预览
+![](http://oq4hkch8e.bkt.clouddn.com/WX20180628-004834@2x.png)
+
+![](http://oq4hkch8e.bkt.clouddn.com/douban.gif)
 # 发布
 线上接口我已经发布在了[heroku](https://www.heroku.com/)(需要翻墙), github地址[douban-api2](https://github.com/BiYuqi/douban-api2)
