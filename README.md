@@ -6,6 +6,9 @@ git clone https://github.com/BiYuqi/vue-douban-movie.git
 cd vue-douban-movie
 npm install
 npm run dev // 起vue项目即可
+
+// 这个地方运行错误的，大概率是sass出了问题
+npm i sass-loader node-sass -S
 ```
 #### 接着运行 node,启动服务， 注意：这一步的 node 转发服务一定要启动，要不然无法正常访问豆瓣 API
 cd node-proxy

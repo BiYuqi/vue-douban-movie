@@ -27,7 +27,6 @@ app.get('/movie/in_theaters', (req, res) => {
     if (error) {
       return error
     }
-    console.log(res)
   })
 })
 

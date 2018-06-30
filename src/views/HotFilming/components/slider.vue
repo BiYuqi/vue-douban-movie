@@ -2,17 +2,17 @@
    <swiper :style="{height: mainHeight + 'px'}" :options="swiperOption" ref="mySwiper" @slide-change-transition-start="slideChangeTransitionStart">
       <!-- slides -->
       <swiper-slide>
-        <div id="minirefresh0" class="minirefresh-wrap">
+        <div id="minirefresh1" class="minirefresh-wrap">
           <div class="minirefresh-scroll">
             <ul class="data-list" id="listdata0">
-              <li>
-              <div v-for="(item, index) in renderData" class="movie-tag" :key="index" @click="movieDetail(item.id)">
+              <li v-for="(item, index) in renderData" :key="index" @click="movieDetail(item.id)">
+              <div class="movie-tag">
                 <div class="left-content">
                   <img :src="item.images.small" referrerpolicy ="never" alt="">
                 </div>
                 <div class="mid-content">
                   <div class="title">{{ item.title }}</div>
-                  <div class="rate">{{ item.rating.average }}</div>
+                  <div class="rate">{{ item.rating.average === 0 ? '暂无评分' : item.rating.average }}</div>
                   <div class="detail">
                     <div class="item">
                       <span>类型：</span>{{ item.genres.join('/')}}
@@ -39,7 +39,7 @@
         </div>
       </swiper-slide>
       <swiper-slide>
-        <div id="minirefresh1" class="minirefresh-wrap">
+        <div id="minirefresh2" class="minirefresh-wrap">
           <div class="minirefresh-scroll">
             <ul class="data-list" id="listdata1">
               <li>
@@ -80,14 +80,18 @@
 
 <script>
 import { mapActions } from 'vuex'
-import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import 'minirefresh/dist/debug/minirefresh'
+import 'swiper/dist/css/swiper.css'
+import 'minirefresh/dist/minirefresh.min.css'
 export default {
   data () {
     return {
       renderData: [],
       renderWillData: [],
-      swiperOption: {}
+      swiperOption: {},
+      miniRefresh1: null,
+      miniRefresh2: null
     }
   },
   computed: {
@@ -116,14 +120,52 @@ export default {
     },
     movieDetail (id) {
       console.log(id)
+    },
+    currentShow () {
+      this.GetHotMovies().then((res) => {
+        this.renderData = res.data.subjects
+        this.miniRefresh1.endDownLoading(true)
+      })
+    },
+    nextShow () {
+      this.GetWillMovies().then((res) => {
+        this.renderWillData = res.data.subjects
+        this.miniRefresh2.endDownLoading(true)
+      })
     }
   },
   mounted () {
-    this.GetHotMovies().then((res) => {
-      this.renderData = res.data.subjects
-    })
-    this.GetWillMovies().then((res) => {
-      this.renderWillData = res.data.subjects
+    this.currentShow()
+    this.nextShow()
+    this.$nextTick(() => {
+      this.miniRefresh1 = new MiniRefresh({
+        container: '#minirefresh1',
+        isScrollBar: false,
+        down: {
+          isAuto: true,
+          callback: this.currentShow
+        },
+        up: {
+          isLock: true,
+          callback: function () {
+            // 上拉事件
+          }
+        }
+      })
+      this.miniRefresh2 = new MiniRefresh({
+        container: '#minirefresh2',
+        isScrollBar: false,
+        down: {
+          isAuto: true,
+          callback: this.nextShow
+        },
+        up: {
+          isLock: true,
+          callback: function () {
+            // 上拉事件
+          }
+        }
+      })
     })
   },
   components: {
@@ -135,97 +177,5 @@ export default {
 
 <style lang="scss">
 @import '../../../styles/base.scss';
-li{
-  list-style: none
-}
-.slider-tab{
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 2rem;
-  left: 0;
-}
-.swiper-container{
-  position: absolute;
-  top: 2rem;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.swiper-slide{
-  overflow-y: auto;
-}
-.movie-tag{
-  display: flex;
-  justify-content: flex-start;
-  padding: .3rem;
-  border-bottom: 1px solid #e4e4e4;
-  .left-content{
-    padding-right: .3rem;
-    img{
-      width: 1.6rem;
-    }
-  }
-  .mid-content{
-    width: 3.5rem;
-    padding-right: .3rem;
-    font-size: 12px;
-    color: $baseColor;
-    i{
-      font-style: normal;
-    }
-  }
-  .right-content{
-    text-align: right;
-    width: 1.4rem;
-    padding-top: .2rem;
-    .box{
-      p{
-        font-size: 12px;
-        color: $buyColor;
-        margin-bottom: 8px;
-      }
-      .buy{
-        display: inline-block;
-        color: $buyColor;
-        background-color: #fff;
-        border: 1px solid $buyColor;
-        padding: .04rem .24rem;
-        border-radius: .04rem;
-      }
-    }
-  }
-}
-@media (min-width:800px) {
-  .slider-header{
-    span{
-      height: .2rem;
-      line-height: .2rem;
-    }
-    i{
-      display: inline-block;
-      background-color: $activeColor;
-      height: 2px;
-      position: absolute;
-      bottom: 0;
-      transition: all .2s;
-    }
-  }
-  .movie-tag{
-    .left-content{
-      padding-right: .3rem;
-      img{
-        width: 100px;
-      }
-    }
-    .mid-content{
-      width: 350px;
-      padding-right: .3rem;
-    }
-    .right-content{
-      width: 200px;
-      text-align: center;
-    }
-  }
-}
+@import './slider.scss';
 </style>
