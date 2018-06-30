@@ -45,10 +45,19 @@ li{
       color: #666;
       font-size: .14rem;
     }
+    .rate {
+      .star-box{
+        background: url('../../../assets/img/rating.png') no-repeat;
+        background-position: 0 0;
+        width: 55px;
+        height: 11px;
+        display: inline-block;
+      }
+    }
   }
   .right-content{
     text-align: right;
-    width: 1.4rem;
+    width: 1.55rem;
     padding-top: .2rem;
     .box{
       p{
@@ -61,7 +70,22 @@ li{
         color: $buyColor;
         background-color: #fff;
         border: 1px solid $buyColor;
-        padding: .04rem .24rem;
+        padding: .04rem .34rem;
+        border-radius: .04rem;
+      }
+    }
+    .box2{
+      p{
+        color: #ffac2e;
+        font-size: 12px;
+        margin-bottom: 8px;
+      }
+      .buy{
+        display: inline-block;
+        color: #ffac2e;
+        background-color: #fff;
+        border: 1px solid #ffac2e;
+        padding: .04rem .34rem;
         border-radius: .04rem;
       }
     }

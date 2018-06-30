@@ -12,7 +12,11 @@
                 </div>
                 <div class="mid-content">
                   <div class="title">{{ item.title }}</div>
-                  <div class="rate">{{ item.rating.average === 0 ? '暂无评分' : item.rating.average }}</div>
+                  <div class="rate">
+                    <span v-if="item.rating.average === 0">暂无评分</span>
+                    <span class="star-box" :style="{'background-position': filterStar(item.rating.average)}" v-else></span>
+                    <span>{{item.rating.average}}</span>
+                  </div>
                   <div class="detail">
                     <div class="item">
                       <span>类型：</span>{{ item.genres.join('/')}}
@@ -28,7 +32,7 @@
                 </div>
                 <div class="right-content">
                   <div class="box">
-                    <p>{{ toFixed(item.collect_count)}}</p>
+                    <p>{{ toFixed(item.collect_count, true)}}</p>
                     <span class="buy">购票</span>
                   </div>
                 </div>
@@ -49,7 +53,6 @@
                   </div>
                   <div class="mid-content">
                     <div class="title">{{ item.title }}</div>
-                    <div class="rate">{{ item.rating.average }}</div>
                     <div class="detail">
                       <div class="item">
                         <span>类型：</span>{{ item.genres.join('/')}}
@@ -64,8 +67,8 @@
                     </div>
                   </div>
                   <div class="right-content">
-                    <div class="box">
-                      <p>{{ toFixed2(item.collect_count)}}</p>
+                    <div class="box2">
+                      <p>{{ toFixed(item.collect_count, false)}}</p>
                       <span class="buy">购票</span>
                     </div>
                   </div>
@@ -112,11 +115,58 @@ export default {
     slideChangeTransitionStart () {
       this.$emit('tab-index', this.swiper.activeIndex)
     },
-    toFixed (num) {
-      return num > 10000 ? (num + '').slice(1) + '人收藏' : num + '人收藏'
+    filterStar (ava) {
+      if (ava === 0) {
+        return '0 -100px'
+      } else if (ava >= 0 && ava < 1) {
+        return '0 -99px'
+      } else if (ava >= 1 && ava < 2) {
+        return '0 -88px'
+      } else if (ava >= 2 && ava < 3) {
+        return '0 -77px'
+      } else if (ava >= 3 && ava < 4) {
+        return '0 -66px'
+      } else if (ava >= 4 && ava < 5) {
+        return '0 -55px'
+      } else if (ava >= 5 && ava < 6) {
+        return '0 -44px'
+      } else if (ava >= 6 && ava < 7) {
+        return '0 -33px'
+      } else if (ava >= 7 && ava < 8) {
+        return '0 -22px'
+      } else if (ava >= 8 && ava < 9) {
+        return '0 -11px'
+      } else if (ava >= 9 && ava < 10) {
+        return '0 0'
+      }
     },
-    toFixed2 (num) {
-      return num > 10000 ? (num + '').slice(1) + '人想看' : num + '人想看'
+    toFixed (num, status) {
+      const trans = num + ''
+      if (trans.length > 0 && trans.length <= 4) {
+        const text = status ? '人看过' : '人想看'
+        return trans + text
+      }
+      if (trans.length > 4 && trans.length < 6) {
+        let one = ~~trans[0]
+        let two = ~~trans[1]
+        let three = ~~trans[2]
+        const text = status ? '万人看过' : '万人想看'
+        if (three < 5) {
+          return one + '.' + two + text
+        } else if (three >= 5 && two !== 0) {
+          return one + '.' + (two + 1) + text
+        } else if (three >= 5 && two === 0) {
+          return one + text
+        }
+      }
+      if (trans.length >= 6) {
+        let one1 = trans[0]
+        let two2 = trans[1]
+        let three3 = trans[2]
+        const text = status ? '万人看过' : '万人想看'
+        return one1 + two2 + '.' + three3 + text
+      }
+      return num
     },
     movieDetail (id) {
       console.log(id)
@@ -137,6 +187,7 @@ export default {
   mounted () {
     this.currentShow()
     this.nextShow()
+    this.$emit('tab-index', this.swiper.activeIndex)
     this.$nextTick(() => {
       this.miniRefresh1 = new MiniRefresh({
         container: '#minirefresh1',
