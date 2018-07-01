@@ -11,3 +11,9 @@ export const fetchWillFilm = () => {
     methods: 'GET'
   })
 }
+export const fetchMovieDetail = (id) => {
+  return request({
+    url: `/movie/subject/${id}`,
+    methods: 'GET'
+  })
+}

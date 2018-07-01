@@ -28,6 +28,11 @@ export default new Router({
           component: () => import('@/views/MySelf/index.vue')
         }
       ]
+    },
+    {
+      path: '/detail',
+      name: 'movie_detail',
+      component: () => import('@/views/MovieDetail/index.vue')
     }
   ]
 })

@@ -141,7 +141,12 @@ export default {
       return num
     },
     movieDetail (id) {
-      console.log(id)
+      this.$router.push({
+        name: 'movie_detail',
+        query: {
+          id: id
+        }
+      })
     },
     currentShow () {
       this.GetHotMovies().then((res) => {

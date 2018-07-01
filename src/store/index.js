@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { fetchHotFilm, fetchWillFilm } from '@/api/movies'
+import {
+  fetchHotFilm,
+  fetchWillFilm,
+  fetchMovieDetail
+} from '@/api/movies'
 Vue.use(Vuex)
 
 const state = {
@@ -22,6 +26,15 @@ const actions = {
   GetWillMovies ({ commit }) {
     return new Promise((resolve, reject) => {
       fetchWillFilm().then((res) => {
+        resolve(res)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+  },
+  GetDetail ({ commit }, id) {
+    return new Promise((resolve, reject) => {
+      fetchMovieDetail(id).then((res) => {
         resolve(res)
       }).catch((err) => {
         reject(err)
