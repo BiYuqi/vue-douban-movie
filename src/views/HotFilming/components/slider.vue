@@ -12,11 +12,7 @@
                 </div>
                 <div class="mid-content">
                   <div class="title">{{ item.title }}</div>
-                  <div class="rate">
-                    <span v-if="item.rating.average === 0">暂无评分</span>
-                    <span class="star-box" :style="{'background-position': filterStar(item.rating.average)}" v-else></span>
-                    <span v-if="item.rating.average !== 0">{{item.rating.average}}</span>
-                  </div>
+                  <star-score :score="item.rating.average"></star-score>
                   <div class="detail">
                     <div class="item">
                       <span>类型：</span>{{ item.genres.join('/')}}
@@ -53,6 +49,7 @@
                   </div>
                   <div class="mid-content">
                     <div class="title">{{ item.title }}</div>
+                    <star-score :score="item.rating.average"></star-score>
                     <div class="detail">
                       <div class="item">
                         <span>类型：</span>{{ item.genres.join('/')}}
@@ -114,31 +111,6 @@ export default {
     ]),
     slideChangeTransitionStart () {
       this.$emit('tab-index', this.swiper.activeIndex)
-    },
-    filterStar (ava) {
-      if (ava === 0) {
-        return '0 -100px'
-      } else if (ava >= 0 && ava < 1) {
-        return '0 -99px'
-      } else if (ava >= 1 && ava < 2) {
-        return '0 -88px'
-      } else if (ava >= 2 && ava < 3) {
-        return '0 -77px'
-      } else if (ava >= 3 && ava < 4) {
-        return '0 -66px'
-      } else if (ava >= 4 && ava < 5) {
-        return '0 -55px'
-      } else if (ava >= 5 && ava < 6) {
-        return '0 -44px'
-      } else if (ava >= 6 && ava < 7) {
-        return '0 -33px'
-      } else if (ava >= 7 && ava < 8) {
-        return '0 -22px'
-      } else if (ava >= 8 && ava < 9) {
-        return '0 -11px'
-      } else if (ava >= 9 && ava < 10) {
-        return '0 0'
-      }
     },
     toFixed (num, status) {
       const trans = num + ''

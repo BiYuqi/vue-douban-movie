@@ -1,11 +1,13 @@
-import SearchBar from './SearchBar/index.vue'
-import SvgIcon from './SvgIcon/index.vue'
-import CitySelect from './CitySelect/index.vue'
+import SearchBar from './SearchBar/index.js'
+import SvgIcon from './SvgIcon/index.js'
+import CitySelect from './CitySelect/index.js'
+import StarScore from './StarScore/index.js'
 
 const components = [
   SearchBar,
   SvgIcon,
-  CitySelect
+  CitySelect,
+  StarScore
 ]
 
 const install = function (Vue, opts = {}) {
