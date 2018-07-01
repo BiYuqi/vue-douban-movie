@@ -20,7 +20,9 @@ app.all('*', (req, res, next) => {
   }
 })
 /*
-* type
+* @type in_theaters 正在热映
+* @type coming_soon 即将热映
+* @type top250 排名250
 */
 app.get('/movie/:type', (req, res) => {
   var sreq = request.get(HOST + req.originalUrl)
@@ -75,6 +77,6 @@ app.get('/movie/celebrity/:id', (req, res) => {
   })
 })
 
-app.listen(8081, function () {
+app.listen(process.env.PORT || 8081, function () {
   console.log('HTTP Server is running in http://127.0.0.1:8081')
 })
