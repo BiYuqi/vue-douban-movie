@@ -19,34 +19,59 @@ app.all('*', (req, res, next) => {
     next()
   }
 })
-
-app.get('/movie/in_theaters', (req, res) => {
+/*
+* type
+*/
+app.get('/movie/:type', (req, res) => {
   var sreq = request.get(HOST + req.originalUrl)
   sreq.pipe(res)
   sreq.on('end', (error, res) => {
-    if (error) {
-      return error
-    }
+    if (error) {}
+    console.log('end')
   })
 })
-
-app.get('/movie/coming_soon', (req, res) => {
-  var sreq = request.get(HOST + req.originalUrl)
-  sreq.pipe(res)
-  sreq.on('end', (error, res) => {
-    if (error) {
-      return error
-    }
-  })
-})
-
+/*
+* search
+*/
 app.get('/movie/search', (req, res) => {
   var sreq = request.get(HOST + req.originalUrl)
   sreq.pipe(res)
   sreq.on('end', (error, res) => {
-    if (error) {
-      return error
-    }
+    if (error) {}
+    console.log('end')
+  })
+})
+/*
+* detail
+*/
+app.get('/movie/subject/:id', function (req, res) {
+  var sreq = request.get(HOST + req.originalUrl)
+  sreq.pipe(res)
+  sreq.on('end', function (error, res) {
+    if (error) {}
+    console.log('end')
+  })
+})
+/*
+* 电影条目剧照
+*/
+app.get('/movie/subject/:id/photos', (req, res) => {
+  var sreq = request.get(HOST + req.originalUrl)
+  sreq.pipe(res)
+  sreq.on('end', (error, res) => {
+    if (error) {}
+    console.log('end')
+  })
+})
+/*
+* 影人条目信息
+*/
+app.get('/movie/celebrity/:id', (req, res) => {
+  var sreq = request.get(HOST + req.originalUrl)
+  sreq.pipe(res)
+  sreq.on('end', (error, res) => {
+    if (error) {}
+    console.log('end')
   })
 })
 

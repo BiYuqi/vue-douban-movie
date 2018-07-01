@@ -15,7 +15,7 @@
                   <div class="rate">
                     <span v-if="item.rating.average === 0">暂无评分</span>
                     <span class="star-box" :style="{'background-position': filterStar(item.rating.average)}" v-else></span>
-                    <span>{{item.rating.average}}</span>
+                    <span v-if="item.rating.average !== 0">{{item.rating.average}}</span>
                   </div>
                   <div class="detail">
                     <div class="item">
